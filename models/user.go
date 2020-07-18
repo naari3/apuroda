@@ -6,6 +6,8 @@ import (
 
 // User User
 type User struct {
-	ID   uuid.UUID
-	Name string
+	ID        uuid.UUID
+	Name      string
+	CreatedAt int64
+	UpdatedAt int64
 }

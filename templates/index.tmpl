@@ -2,6 +2,9 @@
 
   <body>
     <h1>apuroda</h1>
+    {{ if .user }}
+      <h2>Welcome {{ .user.Name }}</h2>
+    {{ end }}
   </body>
 
 </html>

@@ -8,13 +8,14 @@ import (
 
 // Start Start
 func Start() {
-	r := newRouter()
+	r := gin.New()
 
 	store := cookie.NewStore([]byte("secret"))
 	r.Use(sessions.Sessions("session", store))
-
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
+
+	r = applyRoutes(r)
 
 	r.Run()
 }
