@@ -8,6 +8,7 @@ import (
 	"github.com/google/uuid"
 )
 
+// UserStore UserStore
 var UserStore = NewUserMemory()
 
 // UserMemory UserMemory
