@@ -1,10 +1,5 @@
-<html>
+{{ template "header.tmpl" . }}
 
-  <body>
-    <h1>apuroda</h1>
-    {{ if .user }}
-      <h2>Welcome {{ .user.Name }}</h2>
-    {{ end }}
-  </body>
+<p>here is index</p>
 
-</html>
+{{ template "footer.tmpl" . }}

@@ -1,12 +1,9 @@
-<html>
+{{ template "header.tmpl" . }}
 
-  <body>
-    <h1>users</h1>
-    <ul>
-      {{range .users}}
-      <li>{{.Name}}</li>
-      {{end}}
-  </ul>
-  </body>
+<h2>users</h2>
 
-</html>
+{{range .users}}
+<li>{{.Name}}</li>
+{{end}}
+
+{{ template "footer.tmpl" . }}
