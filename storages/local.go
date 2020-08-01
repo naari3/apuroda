@@ -24,7 +24,7 @@ func NewLocalStorage(basePath string) *LocalStorage {
 
 // Set Set
 func (u *LocalStorage) Set(key string, binary io.Reader) error {
-	file, err := os.OpenFile(filepath.Join(u.basePath, key), os.O_WRONLY|os.O_CREATE, 0666)
+	file, err := os.OpenFile(filepath.Join(u.basePath, key), os.O_WRONLY|os.O_CREATE, 0644)
 	if err != nil {
 		return err
 	}
@@ -40,7 +40,6 @@ func (u *LocalStorage) Get(key string) (io.Reader, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer file.Close()
 
 	return bufio.NewReader(file), nil
 }

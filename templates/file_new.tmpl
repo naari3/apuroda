@@ -1,0 +1,10 @@
+{{ template "header.tmpl" . }}
+
+<h2>file upload</h2>
+
+<form method="POST" action="/files" enctype="multipart/form-data">
+    <input name="file" type="file" >
+    <button type="submit">Sign up</button>
+</form>
+
+{{ template "footer.tmpl" . }}

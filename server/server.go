@@ -1,6 +1,8 @@
 package server
 
 import (
+	"apuroda/handlers"
+
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-contrib/sessions/cookie"
 	"github.com/gin-gonic/gin"
@@ -15,6 +17,7 @@ func Start() {
 	r.Use(gin.Logger())
 	r.Use(gin.Recovery())
 
+	r.Use(handlers.CheckSession())
 	r = applyRoutes(r)
 
 	r.Run()

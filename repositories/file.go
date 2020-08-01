@@ -40,7 +40,7 @@ func (f FileRepository) Create(name string, binary io.Reader) (*models.File, err
 		UpdatedAt: time.Now().UnixNano(),
 	}
 	stores.FileStore.Create(file)
-	err := storages.LegacyLocalStorage.Set(name, binary)
+	err := storages.LegacyLocalStorage.Set(id.String(), binary)
 	if err != nil {
 		return nil, err
 	}

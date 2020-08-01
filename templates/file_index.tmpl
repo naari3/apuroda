@@ -1,0 +1,13 @@
+{{ template "header.tmpl" . }}
+
+{{ if .user }}
+<a href="/new_file">Click here to upload new file</a>
+{{ end}}
+
+<h2>files</h2>
+
+{{range .files}}
+<li><a href="/files/{{.ID}}"> {{.Name}}</a></li>
+{{end}}
+
+{{ template "footer.tmpl" . }}

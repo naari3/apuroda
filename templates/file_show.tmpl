@@ -1,0 +1,9 @@
+{{ template "header.tmpl" . }}
+
+<h2>file</h2>
+
+<h3>{{.file.Name}}</h3>
+
+<p><a href="/files/{{.file.ID}}/download">Click here to download</a></p>
+
+{{ template "footer.tmpl" . }}
