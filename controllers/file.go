@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"apuroda/repositories"
-	"bytes"
 	"fmt"
 	"io"
 	"net/http"
@@ -81,29 +80,18 @@ func (f FileController) Download(c *gin.Context) {
 	}
 	file, err := repo.GetByID(id)
 
-	extraHeaders := map[string]string{
-		"Content-Disposition": fmt.Sprintf("attachment; filename=%s", file.Name),
-	}
 	reader, err := file.Get()
 	if err != nil {
 		panic(reader)
 	}
 
-	c.DataFromReader(http.StatusOK, int64(getSize(reader)), "application/octet-stream", reader, extraHeaders)
-}
-
-// func getSize(stream io.Reader) int64 {
-// 	buf := &bytes.Buffer{}
-// 	nRead, err := io.Copy(buf, stream)
-// 	if err != nil {
-// 		panic(stream)
-// 	}
-// 	return nRead
-// }
-
-func getSize(stream io.Reader) int {
-	buf := new(bytes.Buffer)
-	buf.ReadFrom(stream)
-	fmt.Println(buf.Len())
-	return buf.Len()
+	c.Writer.Header().Set("Content-type", "application/octet-stream")
+	c.Writer.Header().Set("Content-Disposition", fmt.Sprintf("attachment; filename=%s", file.Name))
+	c.Stream(func(w io.Writer) bool {
+		_, err := io.Copy(w, reader)
+		if err != nil {
+			panic(err)
+		}
+		return false
+	})
 }

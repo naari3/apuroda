@@ -1,7 +1,7 @@
 package storages
 
 import (
-	"bufio"
+	"bytes"
 	"io"
 	"os"
 	"path/filepath"
@@ -37,9 +37,12 @@ func (u *LocalStorage) Set(key string, binary io.Reader) error {
 // Get Get
 func (u *LocalStorage) Get(key string) (io.Reader, error) {
 	file, err := os.OpenFile(filepath.Join(u.basePath, key), os.O_RDONLY, 0666)
+	defer file.Close()
 	if err != nil {
 		return nil, err
 	}
+	stdout := new(bytes.Buffer)
+	io.Copy(stdout, file)
 
-	return bufio.NewReader(file), nil
+	return stdout, nil
 }
