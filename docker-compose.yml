@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  database:
+    image: postgres
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=apuroda
+    ports:
+      - "5433:5432"
+    volumes:
+      - "database:/var/lib/postgresql/data:z"
+
+volumes:
+  database:
+    driver: local
