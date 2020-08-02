@@ -2,11 +2,13 @@
 
 ## setup
 
-まだ docker-compose に乗ってないし、まだオンメモリでしか動かない
+まだ docker-compose に乗りきってない(dbだけdocker-composeに載せた)
 
 ## how to run
 
 ```bash
+$ docker-compose up -d
+$ PGSSLMODE=disable psqldef apuroda --password=postgres --port=5433 < schema.sql
 $ go run main.go
 ```
 
@@ -22,6 +24,5 @@ $ go run main.go
 ## unimplemented
 
 - 各ユーザーのアップロードしたファイル
-- 永続化機構(レイヤードなので簡単にできる想定)
 - まいかいgin.Hでuserを渡さないようにするやつ
   - やり方がわからん
