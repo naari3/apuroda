@@ -8,8 +8,8 @@ import (
 	"github.com/google/uuid"
 )
 
-// FileStore FileStore
-var FileStore = NewFileMemory()
+// FileMemoryStore FileMemoryStore
+var FileMemoryStore = NewFileMemory()
 
 // FileMemory FileMemory
 type FileMemory struct {

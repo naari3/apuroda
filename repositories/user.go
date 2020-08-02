@@ -49,8 +49,8 @@ func (u UserRepository) Create(name string) (*models.User, error) {
 	user := models.User{
 		ID:        id,
 		Name:      name,
-		CreatedAt: time.Now().UnixNano(),
-		UpdatedAt: time.Now().UnixNano(),
+		CreatedAt: time.Now(),
+		UpdatedAt: time.Now(),
 	}
 	stores.UserStore.Create(user)
 	return &user, nil

@@ -8,8 +8,8 @@ import (
 	"github.com/google/uuid"
 )
 
-// UserStore UserStore
-var UserStore = NewUserMemory()
+// UserMemoryStore UserMemoryStore
+var UserMemoryStore = NewUserMemory()
 
 // UserMemory UserMemory
 type UserMemory struct {

@@ -36,8 +36,8 @@ func (f FileRepository) Create(name string, binary io.Reader) (*models.File, err
 	file := models.File{
 		ID:        id,
 		Name:      name,
-		CreatedAt: time.Now().UnixNano(),
-		UpdatedAt: time.Now().UnixNano(),
+		CreatedAt: time.Now(),
+		UpdatedAt: time.Now(),
 	}
 	stores.FileStore.Create(file)
 	err := storages.LegacyLocalStorage.Set(id.String(), binary)
