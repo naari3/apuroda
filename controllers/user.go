@@ -23,14 +23,17 @@ func (u UserController) Index(c *gin.Context) {
 
 // New New
 func (u UserController) New(c *gin.Context) {
-	c.HTML(http.StatusOK, "user_new.tmpl", gin.H{})
+	next := c.Query("next")
+	if next == "" {
+		next = "/"
+	}
+	c.HTML(http.StatusOK, "user_new.tmpl", gin.H{"next": next})
 }
 
 // Create Create
 func (u UserController) Create(c *gin.Context) {
 	repo := repositories.UserRepository{}
-	c.Request.ParseForm()
-	user, err := repo.Create(c.Request.Form["name"][0])
+	user, err := repo.Create(c.PostForm("name"))
 	if err != nil {
 		fmt.Println(err)
 		c.Redirect(http.StatusTemporaryRedirect, "/users")
@@ -38,5 +41,7 @@ func (u UserController) Create(c *gin.Context) {
 	session := sessions.Default(c)
 	session.Set("user_id", user.ID.String())
 	session.Save()
-	c.Redirect(http.StatusFound, "/")
+
+	next := c.PostForm("next")
+	c.Redirect(http.StatusFound, next)
 }

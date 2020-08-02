@@ -4,6 +4,11 @@
 
 <h3>{{.file.Name}}</h3>
 
+{{ if .user }}
 <p><a href="/files/{{.file.ID}}/download">Click here to download</a></p>
+{{ else }}
+<p><s>Click here to download</s></p>
+<p>If you want to download, you need to <a href="/new_user?next=%2Ffiles%2F{{.file.ID}}">login</a> first</p>
+{{ end }}
 
 {{ template "footer.tmpl" . }}

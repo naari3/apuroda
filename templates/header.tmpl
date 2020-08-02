@@ -1,11 +1,17 @@
 <html>
+  <head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1/new.min.css">
+    <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
+  </head>
 
   <body>
     <header>
-      <h1>apuroda</h1>
-      {{ if .user }}
-        <h2>Welcome {{ .user.Name }}</h2>
-      {{ else }}
-        <a href="/new_user">Login</a>
-      {{ end }}
+      <h1><a href="/">apuroda</a></h1>
+      <nav>
+        {{ if .user }}
+          Welcome {{ .user.Name }}
+        {{ else }}
+          <a href="/new_user">Login</a>
+        {{ end }}
+      </nav>
     </header>
