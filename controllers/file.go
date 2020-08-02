@@ -63,6 +63,10 @@ func (f FileController) Show(c *gin.Context) {
 		panic(err)
 	}
 	file, err := repo.GetByID(id)
+	if err.Error() == "not found" {
+		c.Status(http.StatusNotFound)
+		return
+	}
 	c.HTML(http.StatusOK, "file_show.tmpl", gin.H{"file": file, "user": user})
 }
 
