@@ -45,7 +45,7 @@ func (u UserRepository) Save(user *models.User) error {
 
 // Create Create
 func (u UserRepository) Create(name string) (*models.User, error) {
-	id, _ := uuid.NewUUID()
+	id, _ := uuid.NewRandom()
 	user := models.User{
 		ID:        id,
 		Name:      name,

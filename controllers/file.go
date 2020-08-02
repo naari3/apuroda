@@ -63,7 +63,7 @@ func (f FileController) Show(c *gin.Context) {
 		panic(err)
 	}
 	file, err := repo.GetByID(id)
-	if err.Error() == "not found" {
+	if err != nil && err.Error() == "not found" {
 		c.Status(http.StatusNotFound)
 		return
 	}

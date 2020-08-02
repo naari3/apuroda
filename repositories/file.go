@@ -32,7 +32,7 @@ func (f FileRepository) GetByID(id uuid.UUID) (*models.File, error) {
 
 // Create Create
 func (f FileRepository) Create(name string, binary io.Reader) (*models.File, error) {
-	id, _ := uuid.NewUUID()
+	id, _ := uuid.NewRandom()
 	file := models.File{
 		ID:        id,
 		Name:      name,
